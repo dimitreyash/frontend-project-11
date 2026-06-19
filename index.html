@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,6 +15,52 @@
         <button type="submit" class="btn btn-primary mb-3">Добавить</button>
       </div>
     </form>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html> -->
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSS агрегатор</title>
+  </head>
+  <body>
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h1 class="mb-4">RSS агрегатор</h1>
+
+          <form class="rss-form" novalidate>
+            <div class="row g-2 align-items-start">
+              <div class="col-md-8">
+                <label for="rss-input" class="form-label">Ссылка RSS</label>
+                <input
+                  id="rss-input"
+                  name="url"
+                  type="text"
+                  class="form-control"
+                  placeholder="https://example.com/feed.xml"
+                  aria-describedby="feedback"
+                  autofocus
+                />
+                <div id="feedback" class="invalid-feedback"></div>
+              </div>
+
+              <div class="col-md-4 pt-md-4">
+                <button type="submit" class="btn btn-primary w-100">
+                  Добавить
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div class="feedback mt-3"></div>
+        </div>
+      </div>
+    </main>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
