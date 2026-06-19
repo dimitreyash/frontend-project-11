@@ -2,13 +2,21 @@ import * as yup from "yup";
 import { proxy } from "valtio/vanilla";
 import "./style.css";
 import initView from "./view.js";
+import i18next from "i18next";
+import resources from "./locales.js";
+
+yup.setLocale({
+  mixed: {
+    required: "validation.required",
+    notOneOf: "validation.notOneOf",
+  },
+  string: {
+    url: "validation.url",
+  },
+});
 
 const validateUrl = (url, feeds) => {
-  const schema = yup
-    .string()
-    .required("Не должно быть пустым")
-    .url("Ссылка должна быть валидным URL")
-    .notOneOf(feeds, "RSS уже существует");
+  const schema = yup.string().required().url().notOneOf(feeds);
 
   return schema.validate(url);
 };
@@ -24,11 +32,11 @@ const app = () => {
 
   const elements = {
     form: document.querySelector(".rss-form"),
-    input: document.querySelector('#rss-input'),
+    input: document.querySelector("#rss-input"),
     feedback: document.querySelector(".feedback"),
   };
 
-  initView(state, elements);
+  initView(state, elements, i18next);
 
   elements.form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -51,5 +59,10 @@ const app = () => {
       });
   });
 };
-
-app();
+i18next
+  .init({
+    lng: "ru",
+    debug: false,
+    resources,
+  })
+  .then(() => app());
